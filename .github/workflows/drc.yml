@@ -37,3 +37,4 @@ jobs:
             -   name: Install IHP_Open_PDK
                 run: |
                     klayout -v
+                    ls
