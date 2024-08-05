@@ -38,7 +38,9 @@ jobs:
                 uses: actions/checkout@master
                 with:
                     repository: IHP-GmbH/IHP-Open-PDK
-            -   name: show Files
+            -   name: drc
                 run: |
                     klayout -v
+                    export KLAYOUT_HOME=/ihp-sg13g2/libs.tech/klayout/tech klayout
+                    printenv
                     ls
