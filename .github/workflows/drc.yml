@@ -34,3 +34,10 @@ jobs:
                 sudo apt install -f -y
                 # Check that KLayout was successfully installed!
                 klayout -v
+    Install_IHP_Open_PDK:
+        name: Install IHP_Open_PDK
+        runs-on: ubuntu-latest
+        needs: Installing_Klayout
+        steps:
+            - run: |
+                klayout -v
