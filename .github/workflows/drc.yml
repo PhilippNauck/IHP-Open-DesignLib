@@ -39,6 +39,8 @@ jobs:
                 with:
                     repository: IHP-GmbH/IHP-Open-PDK
                     ref: dev
+            -   name: Install IHP_Open_DesignLib
+                uses: actions/checkout@master
             -   name: drc
                 run: |
                     klayout -v
