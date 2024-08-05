@@ -38,6 +38,7 @@ jobs:
                 uses: actions/checkout@master
                 with:
                     repository: IHP-GmbH/IHP-Open-PDK
+                    ref: dev
             -   name: drc
                 run: |
                     klayout -v
