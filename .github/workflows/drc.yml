@@ -54,7 +54,9 @@ jobs:
             -   name: drc
                 run: |
                     klayout -v
-                    export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.KLAYOUT_HOME }} klayout
+                    echo ${{ vars.KLAYOUT_HOME }};
+
+                    export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech klayout
                     result=true;
                     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
                         echo "$file was changed"
