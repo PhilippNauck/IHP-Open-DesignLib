@@ -60,7 +60,9 @@ jobs:
                         echo "$file was changed"
                         FileRe="FMD_QNC.*\.gds"
                         if [[ $file =~ $FileRe ]]; then 
-                            echo ${BASH_REMATCH};
+                            echo $file;
+                            path=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib${file:1};
+                            echo $path;
                         fi
                     done
                 #OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds")
