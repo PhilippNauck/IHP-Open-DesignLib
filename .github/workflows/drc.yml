@@ -89,5 +89,4 @@ jobs:
                     if !$result then
                         echo "Fail";
                         exit 130;
-                    if
-                    exit 0;
+                    fi
