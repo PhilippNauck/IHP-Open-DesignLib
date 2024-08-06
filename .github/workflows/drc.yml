@@ -88,8 +88,6 @@ jobs:
                         fi
                     done
                     echo $result
-                    if $result then
-                        exit 0;
-                    else
+                    if !$result then
                         exit 130;
                     if
