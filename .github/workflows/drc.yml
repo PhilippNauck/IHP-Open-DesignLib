@@ -89,7 +89,7 @@ jobs:
                     done
                     echo $result
                     if $result then
-                        exit 0
+                        exit 0;
                     else
-                        exit 130
+                        exit 130;
                     if
