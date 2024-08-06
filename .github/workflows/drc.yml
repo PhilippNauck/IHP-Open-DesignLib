@@ -53,14 +53,11 @@ jobs:
                     path: Open-PDK
             -   name: drc
                 run: |
-                    klayout -v
-                    echo ${{ vars.KLAYOUT_HOME }};
-
-                    export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.KLAYOUT_HOME }} klayout
-                    printenv
+                    klayout -v;
+                    export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.KLAYOUT_HOME }} klayout;
                     result=true;
                     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-                        echo "$file was changed"
+                        echo "$file was changed";
                         FileRe="FMD_QNC.*\.gds"
                         if [[ $file =~ $FileRe ]]; then 
                             echo "Run DRC for $file";
@@ -90,6 +87,7 @@ jobs:
                         fi
                     done
                     if !$result then
+                        echo "Fail";
                         exit 130;
                     if
                     exit 0;
