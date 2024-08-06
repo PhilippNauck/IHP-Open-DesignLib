@@ -23,6 +23,8 @@ jobs:
     drc:
         runs-on: ubuntu-latest
         steps:
+            -   name: Install IHP_Open_DesignLib
+                uses: actions/checkout@master
             -   name: Check if Prisma schema changed
                 id: changed-files
                 uses: tj-actions/changed-files@v44
@@ -49,17 +51,13 @@ jobs:
                     repository: IHP-GmbH/IHP-Open-PDK
                     ref: dev
                     path: Open-PDK
-            -   name: Install IHP_Open_DesignLib
-                uses: actions/checkout@master
-                with:
-                    path: lib
             -   name: drc
                 run: |
                     klayout -v
                     export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech klayout
                     ls
                     pwd 
-                    OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/lib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds")
+                    OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds")
 
                     echo $OUTPUT
                     re="Number of DRC errors: [0-9]+"
