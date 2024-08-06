@@ -61,12 +61,15 @@ jobs:
                         FileRe="FMD_QNC.*\.gds"
                         if [[ $file =~ $FileRe ]]; then 
                             echo $file;
-                            path=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib${file:1};
+                            path=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/${file:1};
                             echo $path;
+                            OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="${path}")
+                            echo $OUTPUT
                         fi
                     done
-                #OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds")
+                #
 
+                    #OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds")
                     #echo $OUTPUT
                     #re="Number of DRC errors: [0-9]+"
                     #if [[ $OUTPUT =~ $re ]]; then 
