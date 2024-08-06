@@ -56,7 +56,8 @@ jobs:
                     klayout -v
                     echo ${{ vars.KLAYOUT_HOME }};
 
-                    export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech klayout
+                    export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.KLAYOUT_HOME }} klayout
+                    printenv
                     result=true;
                     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
                         echo "$file was changed"
@@ -91,3 +92,4 @@ jobs:
                     if !$result then
                         exit 130;
                     if
+                    exit 0;
