@@ -48,16 +48,14 @@ jobs:
             -   name: drc
                 run: |
                     klayout -v;
-                    echo ${{ github.workspace }}
-
-                    export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.KLAYOUT_HOME }} klayout;
+                    export KLAYOUT_HOME=${{ github.workspace }}/Open-PDK/${{ vars.KLAYOUT_HOME }} klayout;
                     result=true;
                     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
                         FileRe="FMD_QNC.*\.gds"
                         if [[ $file =~ $FileRe ]]; then 
                             echo "Run DRC for $file";
-                            path=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/${file};
-                            OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.DRC }} -rd "in_gds"="${path}")
+                            path=${{ github.workspace }}/${file};
+                            OUTPUT=$(klayout -b -r ${{ github.workspace }}/Open-PDK/${{ vars.DRC }} -rd "in_gds"="${path}")
 
                             re="Number of DRC errors: [0-9]+"
                             if [[ $OUTPUT =~ $re ]]; then
