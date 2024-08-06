@@ -51,7 +51,4 @@ jobs:
                     ls
                     pwd 
                     klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/lib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds"
-                # pwd -> show path
-                # 
-                #AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds
-                # -> IHP-Open-DesignLib
+                    exit 130
