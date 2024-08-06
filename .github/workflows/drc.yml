@@ -60,11 +60,11 @@ jobs:
                         echo "$file was changed"
                         FileRe="FMD_QNC.*\.gds"
                         if [[ $file =~ $FileRe ]]; then 
-                            echo $file;
+                            echo "Run DRC for $file";
                             path=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/${file};
-                            echo $path;
                             OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="${path}")
                             echo $OUTPUT
+                            echo -e "\e[31mRed Text\e[0m \e[32mGreen Text\e[0m"
                         fi
                     done
                 #
