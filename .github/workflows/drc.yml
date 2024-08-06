@@ -25,15 +25,9 @@ jobs:
         steps:
             -   name: Install IHP_Open_DesignLib
                 uses: actions/checkout@master
-            -   name: Check if Prisma schema changed
+            -   name: Check all files
                 id: changed-files
                 uses: tj-actions/changed-files@v44
-
-            -   name: List all changed files
-                run: |
-                    for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-                        echo "$file was changed"
-                    done
             -   name: Installing Klayout
                 run: |
                     sudo apt update -qq -y
@@ -57,12 +51,11 @@ jobs:
                     export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.KLAYOUT_HOME }} klayout;
                     result=true;
                     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-                        echo "$file was changed";
                         FileRe="FMD_QNC.*\.gds"
                         if [[ $file =~ $FileRe ]]; then 
                             echo "Run DRC for $file";
                             path=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/${file};
-                            OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="${path}")
+                            OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.DRC }} -rd "in_gds"="${path}")
 
                             re="Number of DRC errors: [0-9]+"
                             if [[ $OUTPUT =~ $re ]]; then
