@@ -45,8 +45,9 @@ jobs:
                 run: |
                     export KLAYOUT_HOME=/ihp-sg13g2/libs.tech/klayout/tech klayout
                     ls
-                    pwd
+                    pwd 
+                    klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds"
                 # pwd -> show path
-                # klayout -b -r ./ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds"
+                # 
                 #AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds
                 # -> IHP-Open-DesignLib
