@@ -48,6 +48,8 @@ jobs:
             -   name: drc
                 run: |
                     klayout -v;
+                    echo ${{ github.workspace }}
+
                     export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/${{ vars.KLAYOUT_HOME }} klayout;
                     result=true;
                     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
