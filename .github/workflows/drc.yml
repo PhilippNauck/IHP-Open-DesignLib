@@ -55,7 +55,7 @@ jobs:
                 run: |
                     klayout -v
                     export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech klayout
-
+                    result=true;
                     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
                         echo "$file was changed"
                         FileRe="FMD_QNC.*\.gds"
@@ -72,18 +72,23 @@ jobs:
                                     if (($BASH_REMATCH == 0))
                                     then 
                                         echo "pass";
-                                        exit 0
                                     else
                                         echo "fail";
-                                        exit 130
+                                        result=false;
                                     fi
                                 else 
                                     echo "fail";
-                                    exit 130
+                                    result=false;
                                 fi
                             else
                                 echo "fail";
-                                exit 130
+                                result=false;
                             fi
                         fi
                     done
+                    echo $result
+                    if $result then
+                        exit 0
+                    else
+                        exit 130
+                    if
