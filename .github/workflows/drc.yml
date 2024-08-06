@@ -86,7 +86,7 @@ jobs:
                             fi
                         fi
                     done
-                    if !$result then
-                        echo "Fail";
-                        exit 130;
+                    if [[ $result == false ]]
+                    then 
+                        exit 130 
                     fi
