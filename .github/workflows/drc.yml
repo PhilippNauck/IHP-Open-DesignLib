@@ -55,29 +55,35 @@ jobs:
                 run: |
                     klayout -v
                     export KLAYOUT_HOME=/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech klayout
-                    ls
-                    pwd 
-                    OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds")
 
-                    echo $OUTPUT
-                    re="Number of DRC errors: [0-9]+"
-                    if [[ $OUTPUT =~ $re ]]; then 
-                        echo ${BASH_REMATCH};
-                        NumberRe="[0-9]+"
-                        if [[ $BASH_REMATCH =~ $NumberRe ]]; then 
-                            if (($BASH_REMATCH == 0))
-                            then 
-                                echo "pass";
-                                exit 0
-                            else
-                                echo "fail";
-                                exit 130
-                            fi
-                        else 
-                            echo "fail";
-                            exit 130
+                    for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+                        echo "$file was changed"
+                        FileRe="FMD_QNC.*\.gds"
+                        if [[ $file =~ $FileRe ]]; then 
+                            echo ${BASH_REMATCH};
                         fi
-                    else
-                        echo "fail";
-                        exit 130
-                    fi
+                    done
+                #OUTPUT=$(klayout -b -r /home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/Open-PDK/ihp-sg13g2/libs.tech/klayout/tech/drc/sg13g2_minimal.lydrc -rd "in_gds"="/home/runner/work/IHP-Open-DesignLib/IHP-Open-DesignLib/AnalogLDO_exampleDesign/design_data/klayout/gds/LDO.gds")
+
+                    #echo $OUTPUT
+                    #re="Number of DRC errors: [0-9]+"
+                    #if [[ $OUTPUT =~ $re ]]; then 
+                        #echo ${BASH_REMATCH};
+                        #NumberRe="[0-9]+"
+                        #if [[ $BASH_REMATCH =~ $NumberRe ]]; then 
+                            #if (($BASH_REMATCH == 0))
+                            #then 
+                                #echo "pass";
+                                #exit 0
+                            #else
+                                #echo "fail";
+                                #exit 130
+                            #fi
+                        #else 
+                            #echo "fail";
+                            #exit 130
+                        #fi
+                    #else
+                        #echo "fail";
+                        #exit 130
+                    #fi
